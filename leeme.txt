@@ -1,0 +1,12 @@
+Segun las configuraciones anteriores  __dirname, y las anteriores.
+*.Motor de plantillas EJS, instalacion de la dependencia "npm i ejs"
+
+exprees lo utiliza "app.set("view engine", "ejs")
+
+"app.set("views", __dirname + "/views")"//especificando donde se encontraran las plantillas
+
+en las rutas o respustas del servidor, ya no enviaremos "send" o "sendfile" si no que renderizaremos "render", y borramos
+los archivos de public como el index porque cargaria en primera instancia
+
+creamos una carpeta template, para organizar el header foooter y otros, par incluirlos en los otros archivos.
+
