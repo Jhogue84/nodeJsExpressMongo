@@ -1,4 +1,5 @@
-const express = require("express")
+const express = require("express");
+//const router = require("./router/rutas");//esta opcion con la parte de las rutas en lineas mas a bajo
 const servidor = express();
 
 //const puerto = 3000
@@ -11,17 +12,12 @@ servidor.use(express.static(__dirname + "/public"))
 servidor.set("view engine", "ejs")
 servidor.set("views", __dirname + "/views")
 
-//rutas
-servidor.get("/", (req, res)=>{
-    //res.send("Respuesta del servidor en raiz")
-    res.render("index", {titulo: "Bienvenidos index con plantilla ejs"})
-})
+//middleware, las rutas a utilizar desde rutas.js
+//servidor.use(express.Router(router))//esta opcion con la importacion en la cabezera
+servidor.use("", require("./router/rutas"))
+servidor.use("/estudiantes", require("./router/estudiantes"))
 
-servidor.get("/nosotros", (req, res)=>{
-    //res.send("Respuesta de pagina nosotros")
-    res.render("nosotros", {titulo: "Pagina de Nosotros"})
-})
-
+//middleware
 servidor.use((req, res, next)=>{
     //res.status(404).sendFile(__dirname + "/public/404.html")
     res.status(404).render("404")
