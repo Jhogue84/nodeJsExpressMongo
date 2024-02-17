@@ -1,7 +1,8 @@
 const express = require("express")
 const servidor = express();
 
-puerto = 3000
+//const puerto = 3000
+const puerto = process.env.PORT || 3000 //Variables de entorno, para deploy en el serv.
 
 //configuracion ruta statica de public
 servidor.use(express.static(__dirname + "/public"))
