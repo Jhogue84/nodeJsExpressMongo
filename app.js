@@ -1,21 +1,26 @@
 const express = require("express");
+require("dotenv").config()
 //const router = require("./router/rutas");//esta opcion con la parte de las rutas en lineas mas a bajo
 const servidor = express();
 
-//const puerto = 3000
+//const puerto = 3000, con la nueva configuracion de variable de entorno el asignamos el 3001
 const puerto = process.env.PORT || 3000 //Variables de entorno, para deploy en el hostin.
 
 //conexion a base de datos con mongoose
 const mongoose = require("mongoose")
-const protocolo = "mongodb"
-const ip = "127.0.0.1:27017"
-const dbname = "proyectos1"
 
-const uri = protocolo+"://"+ip+"/"+dbname
+//pasan a variables de entorno al arcnivo .env, despues de intalar dotenv
+const protocolo = process.env.PROTOCOLO
+const ip = process.env.IP
+const dbname = process.env.DBNAME
+
+//const uri = protocolo+"://"+ip+"/"+dbname//una forma de armar la cadena, comillas doble, no sirve intercalar.
+const uri = `${process.env.PROTOCOLO}://${process.env.IP}/${process.env.DBNAME}`//solo funciona con ese tipo de comillas.
+console.log("uri completa ",uri)
 
 mongoose.connect(uri)
     .then(()=>{console.log("Conectado a mongodb")})
-    .catch(err=>{console.log("Erro de conexion: "+err)})
+    .catch(err=>{console.log("Error de conexion: "+err)})
 
 //configuracion ruta statica de public
 servidor.use(express.static(__dirname + "/public"))
