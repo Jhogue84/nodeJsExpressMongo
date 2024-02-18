@@ -5,6 +5,16 @@ const servidor = express();
 //const puerto = 3000
 const puerto = process.env.PORT || 3000 //Variables de entorno, para deploy en el serv.
 
+//conexion a base de datos con mongoose
+const mongoose = require("mongoose")
+
+const uri = "mongodb://127.0.0.1:27017/proyectos1"
+const mongoClient = require("mongodb")
+
+mongoose.connect(uri)
+    .then(()=>{console.log("Conectado a mongodb")})
+    .catch(err=>{console.log("Erro de conexion: "+err)})
+
 //configuracion ruta statica de public
 servidor.use(express.static(__dirname + "/public"))
 
