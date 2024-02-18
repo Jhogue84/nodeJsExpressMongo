@@ -6,7 +6,7 @@ const estudianteSchema = new Schema({
     nombres: String,
     apellidos: String,
     edad: BigInt,
-    clase: String
+    curso: String
 })
 
 //creado el modelo

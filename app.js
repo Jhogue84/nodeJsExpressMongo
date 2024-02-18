@@ -3,13 +3,15 @@ const express = require("express");
 const servidor = express();
 
 //const puerto = 3000
-const puerto = process.env.PORT || 3000 //Variables de entorno, para deploy en el serv.
+const puerto = process.env.PORT || 3000 //Variables de entorno, para deploy en el hostin.
 
 //conexion a base de datos con mongoose
 const mongoose = require("mongoose")
+const protocolo = "mongodb"
+const ip = "127.0.0.1:27017"
+const dbname = "proyectos1"
 
-const uri = "mongodb://127.0.0.1:27017/proyectos1"
-const mongoClient = require("mongodb")
+const uri = protocolo+"://"+ip+"/"+dbname
 
 mongoose.connect(uri)
     .then(()=>{console.log("Conectado a mongodb")})
