@@ -1,0 +1,34 @@
+<%- include("templates/header", {title: "Detalle Estudiante"}) %>
+  <div class="container">
+    <h1>Modificar Estudiante</h1>
+    <% if (error) { %>
+      <%= mensaje %>
+      <a href="/estudiantes" class="btn btn-dark btn-block mt-4">Volver</a>
+    <% } else { %>
+      <form action="/estudiantes" method="post">
+        <div class="form-group mt-2">
+          <label for="id">id</label>
+          <input type="text" class="form-control " name="ID" id="id" disabled value="<%= estudiante._id%>">
+        </div>
+        <div class="form-group mt-2">
+          <label for="nombres">Nombres</label>
+          <input type="text" class="form-control " name="nombres" id="nombres" placeholder="Digitar sus nombres" value="<%= estudiante.nombres %>">
+        </div>
+        <div class="form-group mt-2">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Digitar sus apellidos" value="<%- estudiante.apellidos %>">
+        </div>
+        <div class="form-group mt-2">
+            <label for="edad">Edad</label>
+            <input type="number" class="form-control" name="edad" id="edad" value="<%= estudiante.edad %>" >
+        </div>
+        <div class="form-group mt-2" >
+            <label for="clase">Clase</label>
+            <input type="clase" class="form-control" name="clase" id="clase" placeholder="Digite la Materia o Clase" value="<%= estudiante.clase%>">
+        </div>
+        <button type="submit" class="btn btn-success mt-4">Modificar</button>
+      </form>
+    <% } %> 
+    </div>
+
+<%- include("templates/footer")  %>

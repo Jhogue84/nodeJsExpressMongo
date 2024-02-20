@@ -1,0 +1,25 @@
+<%- include("templates/header", {title: "Estudiantes Adicionar"}) %>
+    <div class="container">
+        <h1>Adicionar Estudiante</h1>
+        <form action="/estudiantes" method="post">
+            <div class="form-group mt-2">
+              <label for="nombres">Nombres</label>
+              <input type="text" class="form-control " name="nombres" id="nombres" placeholder="Digitar sus nombres">
+            </div>
+            <div class="form-group mt-2">
+              <label for="apellidos">Apellidos</label>
+              <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Digitar sus apellidos">
+            </div>
+            <div class="form-group mt-2">
+                <label for="edad">Edad</label>
+                <input type="number" class="form-control" name="edad" id="edad" value="12" >
+            </div>
+            <div class="form-group mt-2" >
+                <label for="clase">Clase</label>
+                <input type="clase" class="form-control"  name="clase" id="clase" placeholder="Digitar la Materia o Clase">
+            </div>
+            <button type="submit" class="btn btn-primary mt-4">Guardar</button>
+          </form>
+    </div>    
+
+<%- include("templates/footer") %>

@@ -1,0 +1,75 @@
+<%- include("templates/header", {title: "Detalle Estudiante" })%>
+    <div class="container">
+        <h1>Detalle Estudiante</h1>
+        <% if (error) { %>
+            <p>
+                <%= mensaje %>
+            </p>
+            <a href="/estudiantes" class="btn btn-dark btn-sm btn-block mt-4">Volver a Estudiantes</a>
+            <% } else { %>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Item</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombres</th>
+                            <th scope="col">Apellidos</th>
+                            <th scope="col">Edad</th>
+                            <th scope="col">Clase</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                1
+                            </th>
+                            <th scope="row">
+                                <%= estudiante.id %>
+                            </th>
+                            <td>
+                                <%= estudiante.nombres %>
+                            </td>
+                            <td>
+                                <%= estudiante.apellidos %>
+                            </td>
+                            <td>
+                                <%= estudiante.edad %>
+                            </td>
+                            <td>
+                                <%= estudiante.clase %>
+                            </td>
+                            <td><a href="estudiantes/<%= estudiante.id %>"
+                                    class="btn btn-warning btn-sm">Modificar</a>
+                                <!--<button class="btn btn-danger btn-sm" data-id="<%= estudiante.id %>">Eliminar</button>-->
+                                <input type="button" value="Delete" class="btn btn-danger btn-sm" data-id="<%= estudiante.id %>" />
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <% } %>
+    </div>
+
+    <%- include("templates/footer") %>
+    <script>
+        const btnEliminar = document.querySelector(".btn-danger")
+        btnEliminar.addEventListener("click", async()=>{
+            console.log(btnEliminar.dataset.id)
+            const idbd = btnEliminar.dataset.id
+            try {
+                const data = await fetch(`/estudiantes/${idbd}`, {method: "delete"})
+                const rta = await data.json()
+                //redirccionar segun rta
+                if(rta.estado){
+                    window.location.href = "/estudiantes"
+                }else{
+                    console.log(rta)
+                }
+
+            } catch (error) {
+                console.log("Error: ", error)
+            }
+            
+        })
+        
+    </script>

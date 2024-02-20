@@ -1,32 +1,56 @@
-<%- include("templates/header", {title: "Estudiantes"}) %>
+<%- include("templates/header", {title: "Estudiantes" }) %>
     <div class="container">
         <h1>Estudiantes</h1>
         <table class="table">
             <thead>
-              <tr>
-                <th scope="col">Item</th>
-                <th scope="col">Nombres</th>
-                <th scope="col">Apellidos</th>
-                <th scope="col">Edad</th>
-                <th scope="col">Clase</th>
-                <th scope="col">Acciones</th>
-              </tr>
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Edad</th>
+                    <th scope="col">Clase</th>
+                    <th scope="col"><a href="estudiantes/adicionar" class="btn btn-primary btn-sm">Adicionar
+                            Estudiante</a></th>
+                </tr>
             </thead>
             <tbody>
-                <% if (arrayEstudiantes.length > 0) { %>
-                    <% arrayEstudiantes.forEach(estudiante => { %>
+                <% if (arrayEstudiantes.length> 0) { %>
+                    <% arrayEstudiantes.forEach(estudiante=> { %>
                         <tr>
-                            <th scope="row"><%= arrayEstudiantes.indexOf(estudiante)+1 %></th>
-                            <td><%= estudiante.nombres %></td>
-                            <td><%= estudiante.apellidos %></td>
-                            <td><%= estudiante.edad %></td>
-                            <td><%= estudiante.curso %></td>
-                            <td><input type="button" value="Modificar" /><input type="button" value="Eliminar" /></td>
+                            <th scope="row">
+                                <%= arrayEstudiantes.indexOf(estudiante)+1 %>
+                            </th>
+                            <td>
+                                <%= estudiante.nombres %>
+                            </td>
+                            <td>
+                                <%= estudiante.apellidos %>
+                            </td>
+                            <td>
+                                <%= estudiante.edad %>
+                            </td>
+                            <td>
+                                <%= estudiante.clase %>
+                            </td>
+                            <td><a href="estudiantes/<%= estudiante.id %>"
+                                    class="btn btn-secondary btn-sm">Detalle</a>
+                                <!--<input type="button" class="btn btn-danger btn-sm" id="eliminar" value="Eliminar" data-id="<%= estudiante.id  %>" />-->
+                                <button class="btn btn-danger btn-sm" id="eliminar" data-id="<%= estudiante.id  %>" >Eliminar</button>
+                            </td>
                         </tr>
-                    <% }) %>
-                <% } %>
+                        <% }) %>
+                    <% } %>
             </tbody>
-          </table>
+        </table>
     </div>
 
-<%- include("templates/footer") %>
+    <%- include("templates/footer") %>
+    <script>
+        const btnEliminar = document.querySelector("#eliminar")
+        btnEliminar.addEventListener("click", ()=>{
+            //const estudianteDb = 
+            console.log("me diste click")
+            alert(btnEliminar.dataset.id)
+            //console.log(btnEliminar.dataset.id)
+        })
+    </script>

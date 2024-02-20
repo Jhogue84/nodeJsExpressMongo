@@ -1,7 +1,14 @@
 const express = require("express");
+const bodyParser = require("body-parser")
 require("dotenv").config()
 //const router = require("./router/rutas");//esta opcion con la parte de las rutas en lineas mas a bajo
 const servidor = express();
+
+//tratamiento de datos como/desde formularios y json
+//parse application/x-www-form-urlencoded
+servidor.use(bodyParser.urlencoded({ extended: false}))
+//parse application/json
+servidor.use(bodyParser.json())
 
 //const puerto = 3000, con la nueva configuracion de variable de entorno el asignamos el 3001
 const puerto = process.env.PORT || 3000 //Variables de entorno, para deploy en el hostin.
@@ -22,7 +29,7 @@ mongoose.connect(uri)
     .then(()=>{console.log("Conectado a mongodb")})
     .catch(err=>{console.log("Error de conexion: "+err)})
 
-//configuracion ruta statica de public
+//configuracion ruta statica de la carpeta public
 servidor.use(express.static(__dirname + "/public"))
 
 //motor de plantillas
